@@ -1,0 +1,264 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "ryu",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "GetCoinsIntent",
+          "samples": [
+            "what is in my portfolio",
+            "what cryptocurrencies do I have",
+            "what cryptocurrencies do I have in my portfolio",
+            "how many cryptocurrencies do I have"
+          ]
+        },
+        {
+          "name": "GetWorthIntent",
+          "samples": [
+            "what is the worth of my portfolio",
+            "what is the worth of my balance",
+            "how much money do I have",
+            "how much my balance is worth",
+            "how much my portfolio is worth",
+            "how much dollars do I have",
+            "how much USD do I have"
+          ]
+        },
+        {
+          "name": "GetCoinWorthIntent",
+          "slots": [
+            {
+              "name": "COIN",
+              "type": "COIN"
+            }
+          ],
+          "samples": [
+            "how much {COIN} is worth",
+            "how much dollars {COIN} is worth",
+            "what is the current price of {COIN}",
+            "what is the price of {COIN}",
+            "price of {COIN}",
+            "get me the price of {COIN}",
+            "tell me the price of {COIN}"
+          ]
+        },
+        {
+          "name": "GetDayChangesIntent",
+          "samples": [
+            "changes to my portfolio",
+            "today changes",
+            "last twenty four hours changes",
+            "twenty four portfolio changes",
+            "what is the highest earning curency today",
+            "what is the highest earning curency in the last twenty four hours",
+            "what is the lowest earning curency today",
+            "what is the lowest earning curency in the last twenty four hours"
+          ]
+        },
+        {
+          "name": "GetBalanceIntent",
+          "slots": [
+            {
+              "name": "COIN",
+              "type": "COIN"
+            }
+          ],
+          "samples": [
+            "get my {COIN}",
+            "get my {COIN} balance",
+            "what is my {COIN}",
+            "what is my {COIN} balance",
+            "how much {COIN} do I have",
+            "how much {COIN}",
+            "what amount of {COIN} do I have",
+            "what is my amount of {COIN}"
+          ]
+        },
+        {
+          "name": "AddCoinIntent",
+          "slots": [
+            {
+              "name": "COIN",
+              "type": "COIN"
+            },
+            {
+              "name": "INTEGER",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "DECIMALS",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "samples": [
+            "add {INTEGER} point {DECIMALS} {COIN} to my portfolio",
+            "add {INTEGER} point {DECIMALS} {COIN}",
+            "add to my portfolio {INTEGER} point {DECIMALS} {COIN}",
+            "I just bought {INTEGER} point {DECIMALS} {COIN} can you add it to my portfolio",
+            "can you add {INTEGER} point {DECIMALS} {COIN} to my portfolio",
+            "add {INTEGER} {COIN} to my portfolio",
+            "add {INTEGER} {COIN}",
+            "add to my portfolio {INTEGER} {COIN}",
+            "I just bought {INTEGER} {COIN} can you add it to my portfolio",
+            "can you add {INTEGER} {COIN} to my portfolio",
+            "add point {DECIMALS} {COIN} to my portfolio",
+            "add point {DECIMALS} {COIN}",
+            "add to my portfolio point {DECIMALS} {COIN}",
+            "I just bought point {DECIMALS} {COIN} can you add it to my portfolio",
+            "can you add point {DECIMALS} {COIN} to my portfolio"
+          ]
+        },
+        {
+          "name": "RemoveCoinIntent",
+          "slots": [
+            {
+              "name": "COIN",
+              "type": "COIN"
+            },
+            {
+              "name": "INTEGER",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "DECIMALS",
+              "type": "AMAZON.NUMBER"
+            }
+          ],
+          "samples": [
+            "remove {INTEGER} point {DECIMALS} {COIN} from my portfolio",
+            "remove {INTEGER} point {DECIMALS} {COIN}",
+            "remove from my portfolio {INTEGER} point {DECIMALS} {COIN}",
+            "I just sell {INTEGER} point {DECIMALS} {COIN} can you remove it from my portfolio",
+            "can you remove {INTEGER} point {DECIMALS} {COIN} from my portfolio",
+            "can you remove {INTEGER} point {DECIMALS} {COIN}",
+            "remove {INTEGER} {COIN} from my portfolio",
+            "remove {INTEGER} {COIN}",
+            "remove from my portfolio {INTEGER} {COIN}",
+            "I just sell {INTEGER} {COIN} can you remove it from my portfolio",
+            "can you remove {INTEGER} {COIN} from my portfolio",
+            "can you remove {INTEGER} {COIN}",
+            "remove point {DECIMALS} {COIN} from my portfolio",
+            "remove point {DECIMALS} {COIN}",
+            "remove from my portfolio point {DECIMALS} {COIN}",
+            "I just sell point {DECIMALS} {COIN} can you remove it from my portfolio",
+            "can you remove point {DECIMALS} {COIN} from my portfolio",
+            "can you remove point {DECIMALS} {COIN}"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "id": "BTC",
+              "name": {
+                "value": "bitcoin"
+              }
+            },
+            {
+              "id": "ETH",
+              "name": {
+                "value": "ethereum"
+              }
+            },
+            {
+              "id": "XRP",
+              "name": {
+                "value": "ripple"
+              }
+            },
+            {
+              "id": "BCH",
+              "name": {
+                "value": "bitcoin cash"
+              }
+            },
+            {
+              "id": "EOS",
+              "name": {
+                "value": "eos"
+              }
+            },
+            {
+              "id": "LTC",
+              "name": {
+                "value": "litecoin"
+              }
+            },
+            {
+              "id": "XLM",
+              "name": {
+                "value": "stellar"
+              }
+            },
+            {
+              "id": "ADA",
+              "name": {
+                "value": "cardano"
+              }
+            },
+            {
+              "id": "TRX",
+              "name": {
+                "value": "tron"
+              }
+            },
+            {
+              "id": "IOT",
+              "name": {
+                "value": "iota"
+              }
+            }
+          ],
+          "name": "COIN"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "GetBalanceIntent",
+          "confirmationRequired": false,
+          "slots": [
+            {
+              "name": "COIN",
+              "type": "COIN",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.722952683751.1012556622839"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.722952683751.1012556622839",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Can you provide the name of the coin?"
+          }
+        ]
+      }
+    ]
+  }
+}

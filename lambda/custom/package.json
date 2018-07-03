@@ -1,0 +1,9 @@
+{
+  "name": "tradepal-kit",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "alexa-sdk": "^1.0.25",
+    "axios": "^0.18.0"
+  }
+}
