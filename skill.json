@@ -3,9 +3,29 @@
     "publishingInformation": {
       "locales": {
         "en-US": {
-          "name": "Ryu"
+          "summary": "Ryu Concierge offers instant information on the best opportunities from the crypto market",
+          "examplePhrases": [
+            "Alexa, open Ryu Concierge",
+            "Add ten bitcoin",
+            "How much money do I have"
+          ],
+          "keywords": [
+            "cryptocurrencies",
+            "trading",
+            "bitcoin",
+            "ethereum",
+            "crypto"
+          ],
+          "name": "Ryu – Crypto concierge",
+          "smallIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/e5d0/84c4c064f2314f53ad0c595232225e80/APP_ICON?versionId=yPO_lXzBMKD6gN0KooZxn_aKWeYvKLiA&AWSAccessKeyId=AKIAIEYXX6DHY7O4XWMA&Expires=1530780531&Signature=9QrzWYWnCNTcY1gEV66g6vR7XIE%3D",
+          "description": "Ryu Concierge offers instant information on the best opportunities from the crypto market. With a wide degree of functionalities and ai intelligence, you will have an algorithmic concierge ready to deliver market analysis, trends and the latest social market emotion.\n\nJust by using your voice, you are now able to have a faster and more personalized experience when trading your daily financial portfolio. Now you can analyze the most recent market trades just by asking for the correct information.",
+          "largeIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/e23a/13eb96244cca41608fcc5f2f1fdb81cf/APP_ICON_LARGE?versionId=zI5f63Aap9VvBLHT.GlBaqM5iPuFbJ7W&AWSAccessKeyId=AKIAIEYXX6DHY7O4XWMA&Expires=1530780531&Signature=gch0gzJV0yIUD1RjJh772MmGZns%3D"
         }
-      }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "AWS permissions: lambda_basic_execution + AmazonDynamoDBFullAccess",
+      "category": "BUSINESS_AND_FINANCE",
+      "distributionCountries": []
     },
     "apis": {
       "custom": {
@@ -15,6 +35,19 @@
         "interfaces": []
       }
     },
-    "manifestVersion": "1.0"
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "locales": {
+        "en-US": {
+          "termsOfUseUrl": "https://www.syntheticsai.com/alexa-terms-of-use/",
+          "privacyPolicyUrl": "https://www.syntheticsai.com/alexa-privacy-policy/"
+        }
+      },
+      "isExportCompliant": true,
+      "containsAds": false,
+      "isChildDirected": false,
+      "usesPersonalInfo": false
+    }
   }
 }

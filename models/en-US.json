@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "ryu",
+      "invocationName": "ryu concierge",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
