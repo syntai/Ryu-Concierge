@@ -18,14 +18,11 @@ const handlers = {
     'LaunchRequest': function () {
         const speechOutput = 'Hi! How can Ryu Concierge help you today?';
 
-        this.response.speak(speechOutput);
+        this.response.speak(speechOutput).listen(HELP_MESSAGE);
         this.emit(':responseReady');
     },
     'AMAZON.HelpIntent': function () {
-        const speechOutput = HELP_MESSAGE;
-        const reprompt = HELP_REPROMPT;
-
-        this.response.speak(speechOutput).listen(reprompt);
+        this.response.speak(HELP_MESSAGE).listen(HELP_REPROMPT);
         this.emit(':responseReady');
     },
     'AMAZON.CancelIntent': function () {
@@ -39,13 +36,19 @@ const handlers = {
     'AMAZON.FallbackIntent': function () {
         this.response.speak(FALLBACK_MESSAGE);
         this.emit(':responseReady');
-    }
+    },
+    'Unhandled': function () {
+        const speechOutput = 'Sorry, I’m not sure about that.';
+
+        this.response.speak(speechOutput);
+        this.emit(':responseReady');
+    },
 };
 
 exports.handler = function (event, context, callback) {
     const alexa = Alexa.handler(event, context, callback);
     alexa.dynamoDBTableName = 'ryu';
-    alexa.registerHandlers(handlers);
     alexa.registerHandlers(BalanceHandlers);
+    alexa.registerHandlers(handlers);
     alexa.execute();
 };
