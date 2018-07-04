@@ -69,7 +69,7 @@ function GetBalanceIntent() {
     if (portfolio && (typeof portfolio[coin.id].amount == 'number'))
         amount = portfolio[coin.id].amount;
 
-    const speechOutput = `Your ${coin.name} balance is ${amount}`;
+    const speechOutput = `Your ${coin.name} balance is ${amount.toFixed(4)}`;
 
     this.response.speak(speechOutput);
     this.emit(':responseReady');
@@ -104,7 +104,7 @@ function AddCoinIntent() {
 
         const total = portfolio[coin.id].amount;
         this.attributes.portfolio = portfolio;
-        speechOutput = `${amount} ${coin.name} has been added to your portfolio. Now you have ${total} ${coin.name}`;
+        speechOutput = `${amount} ${coin.name} has been added to your portfolio. Now you have ${total.toFixed(4)} ${coin.name}`;
     }
 
     this.response.speak(speechOutput);
@@ -125,7 +125,7 @@ function RemoveCoinIntent() {
             portfolio[coin.id].amount -= amount;
             this.attributes.portfolio = portfolio;
             const left = portfolio[coin.id].amount;
-            speechOutput = `${amount} ${coin.name} has been removed from your portfolio. Now you have ${left} ${coin.name}`;
+            speechOutput = `${amount} ${coin.name} has been removed from your portfolio. Now you have ${left.toFixed(4)} ${coin.name}`;
         } else {
             speechOutput = `You don't have enough ${coin.name} in your portfolio`;
         }
