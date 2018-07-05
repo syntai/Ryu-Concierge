@@ -9,7 +9,7 @@ async function getTotalAmount(portfolio) {
 
     const total = symbols.reduce((total, coin) => {
         if (portfolio[coin].amount)
-            total.coins.push(`${portfolio[coin].amount} ${portfolio[coin].name}`);
+            total.coins.push(`${portfolio[coin].amount.toFixed(3)} ${portfolio[coin].name}`);
         total.worth += response.data[coin].USD * portfolio[coin].amount;
 
         return total;

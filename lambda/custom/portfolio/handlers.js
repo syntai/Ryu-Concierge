@@ -26,7 +26,7 @@ async function GetCoinWorthIntent() {
     const res = this.event.request.intent.slots.COIN.resolutions.resolutionsPerAuthority;
     const coin = res[0].values[0].value;
     const total = await getCoinValue(coin.id);
-    const speechOutput = `${coin.name} is currently worth ${total.toFixed(2)} USD`;
+    const speechOutput = `1 ${coin.name} is currently worth ${total.toFixed(2)} USD`;
 
     this.response.speak(speechOutput).listen(REPROMPT_MESSAGE);
     this.emit(':responseReady');
@@ -71,22 +71,40 @@ function GetBalanceIntent() {
     if (portfolio && (typeof portfolio[coin.id].amount == 'number'))
         amount = portfolio[coin.id].amount;
 
-    const speechOutput = `Your ${coin.name} balance is ${amount.toFixed(4)}`;
+    const speechOutput = `Your ${coin.name} balance is ${amount.toFixed(3)}`;
 
     this.response.speak(speechOutput).listen(REPROMPT_MESSAGE);
     this.emit(':responseReady');
 };
 
-function AddCoinIntent() {
-    const integer = this.event.request.intent.slots.INTEGER.value;
-    const decimals = this.event.request.intent.slots.DECIMALS.value
-    const amount = parseFloat(`${integer}.${decimals}`);
-    const res = this.event.request.intent.slots.COIN.resolutions.resolutionsPerAuthority;
-    const coin = res[0].values[0].value;
-    let portfolio = this.attributes.portfolio;
+function ValidateCoin(intent) {
+    const resolutions = intent.event.request.intent.slots.COIN.resolutions;
+    if (!resolutions)
+        return 'Please provide a valid cryptocurrency';
 
-    let speechOutput = 'Please provide a valid amount';
-    if (amount !== NaN) {
+    return resolutions.resolutionsPerAuthority[0].values[0].value;;
+}
+
+function ValidateAmount(intent) {
+    const integer = intent.event.request.intent.slots.INTEGER.value;
+    const decimals = intent.event.request.intent.slots.DECIMALS.value;
+    const amount = parseFloat(`${integer}.${decimals}`);
+    if (isNaN(amount))
+        return 'Please provide a valid amount';
+
+    return amount;
+}
+
+function AddCoinIntent() {
+    let speechOutput = '';
+    const coin = ValidateCoin(this);
+    const amount = ValidateAmount(this);
+    if (typeof coin === 'string') {
+        speechOutput = coin;
+    } else if (typeof amount === 'string') {
+        speechOutput = amount;
+    } else {
+        let portfolio = this.attributes.portfolio;
         if (portfolio) {
             if (portfolio[coin.id])
                 portfolio[coin.id].amount += amount;
@@ -106,7 +124,7 @@ function AddCoinIntent() {
 
         const total = portfolio[coin.id].amount;
         this.attributes.portfolio = portfolio;
-        speechOutput = `${amount} ${coin.name} has been added to your portfolio. Now you have ${total.toFixed(4)} ${coin.name}`;
+        speechOutput = `${amount} ${coin.name} has been added to your portfolio. Now you have ${total.toFixed(3)} ${coin.name}`;
     }
 
     this.response.speak(speechOutput).listen(REPROMPT_MESSAGE);
@@ -114,20 +132,20 @@ function AddCoinIntent() {
 };
 
 function RemoveCoinIntent() {
-    const integer = this.event.request.intent.slots.INTEGER.value;
-    const decimals = this.event.request.intent.slots.DECIMALS.value;
-    const amount = parseFloat(`${integer}.${decimals}`);
-    const res = this.event.request.intent.slots.COIN.resolutions.resolutionsPerAuthority;
-    const coin = res[0].values[0].value;
-    let portfolio = this.attributes.portfolio;
-
-    let speechOutput = 'Please provide a valid amount';
-    if (amount !== NaN) {
+    let speechOutput = '';
+    const coin = ValidateCoin(this);
+    const amount = ValidateAmount(this);
+    if (typeof coin === 'string') {
+        speechOutput = coin;
+    } else if (typeof amount === 'string') {
+        speechOutput = amount;
+    } else {
+        let portfolio = this.attributes.portfolio;
         if (portfolio && portfolio[coin.id] && portfolio[coin.id].amount >= amount) {
             portfolio[coin.id].amount -= amount;
             this.attributes.portfolio = portfolio;
             const left = portfolio[coin.id].amount;
-            speechOutput = `${amount} ${coin.name} has been removed from your portfolio. Now you have ${left.toFixed(4)} ${coin.name}`;
+            speechOutput = `${amount} ${coin.name} has been removed from your portfolio. Now you have ${left.toFixed(3)} ${coin.name}`;
         } else {
             speechOutput = `You don't have enough ${coin.name} in your portfolio`;
         }
