@@ -4,8 +4,6 @@ const {
     getCoinChanges
 } = require('./apis');
 
-const REPROMPT_MESSAGE = 'Can Ryu Concierge help you with anything else?';
-
 async function GetWorthIntent() {
     const portfolio = this.attributes.portfolio;
     let speechOutput = 'You currently have no coins in your portfolio';
@@ -18,7 +16,7 @@ async function GetWorthIntent() {
         }
     }
 
-    this.response.speak(speechOutput).listen(REPROMPT_MESSAGE);
+    this.response.speak(speechOutput);
     this.emit(':responseReady');
 };
 
@@ -28,7 +26,7 @@ async function GetCoinWorthIntent() {
     const total = await getCoinValue(coin.id);
     const speechOutput = `1 ${coin.name} is currently worth ${total.toFixed(2)} USD`;
 
-    this.response.speak(speechOutput).listen(REPROMPT_MESSAGE);
+    this.response.speak(speechOutput);
     this.emit(':responseReady');
 };
 
@@ -43,7 +41,7 @@ async function GetDayChangesIntent() {
         ${coins.low.name} has ${verbLow} ${valueLow}% in the last 24h
     `;
 
-    this.response.speak(speechOutput).listen(REPROMPT_MESSAGE);
+    this.response.speak(speechOutput);
     this.emit(':responseReady');
 };
 
@@ -59,7 +57,7 @@ function GetCoinsIntent() {
         speechOutput = `You have ${coins.length} cryptocurrencies in your portfolio: ${list}`;
     }
 
-    this.response.speak(speechOutput).listen(REPROMPT_MESSAGE);
+    this.response.speak(speechOutput);
     this.emit(':responseReady');
 };
 
@@ -73,7 +71,7 @@ function GetBalanceIntent() {
 
     const speechOutput = `Your ${coin.name} balance is ${amount.toFixed(3)}`;
 
-    this.response.speak(speechOutput).listen(REPROMPT_MESSAGE);
+    this.response.speak(speechOutput);
     this.emit(':responseReady');
 };
 
@@ -127,7 +125,7 @@ function AddCoinIntent() {
         speechOutput = `${amount} ${coin.name} has been added to your portfolio. Now you have ${total.toFixed(3)} ${coin.name}`;
     }
 
-    this.response.speak(speechOutput).listen(REPROMPT_MESSAGE);
+    this.response.speak(speechOutput);
     this.emit(':responseReady');
 };
 
@@ -151,7 +149,7 @@ function RemoveCoinIntent() {
         }
     }
 
-    this.response.speak(speechOutput).listen(REPROMPT_MESSAGE);
+    this.response.speak(speechOutput);
     this.emit(':responseReady');
 };
 
